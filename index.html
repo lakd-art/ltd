@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>LTD little seoul - Facturation</title>
+  <!-- Activation du mode dark via Tailwind (mode "class") -->
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- jsPDF et jsPDF-AutoTable pour le PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+  <header class="flex justify-between items-center bg-gray-800 p-4">
+    <div class="flex items-center">
+      <!-- Affichage du logo sur la page (optionnel) -->
+      <img src="logo.png" alt="Logo LTD" class="w-12 h-12 mr-4">
+      <h1 class="text-2xl font-bold">LTD little seoul</h1>
+    </div>
+    <!-- Pas de bouton de bascule, le site reste en dark -->
+  </header>
+  <main class="max-w-6xl mx-auto p-4">
+    <!-- Le catalogue sera affiché ici sous forme de cartes produits -->
+    <section id="catalogue"></section>
+  </main>
+  <footer class="fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700 p-4">
+    <div id="invoice-summary" class="flex justify-center items-center space-x-4">
+      <span id="total-facture" class="text-lg font-semibold">Total : 0 $</span>
+      <button id="clear-btn" class="bg-red-600 text-white px-4 py-2 rounded">Réinitialiser</button>
+      <button id="facture-btn" class="bg-green-600 text-white px-4 py-2 rounded">Générer Facture</button>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
