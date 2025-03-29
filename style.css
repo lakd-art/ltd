@@ -1,173 +1,204 @@
-/* Variables de thème */
-:root {
-    --bg-color: #f7f7f7;
-    --text-color: #333;
-    --container-bg: #fff;
-    --accent-color: #007bff;
-    --header-bg: #007bff;
-    --header-text: #fff;
-    --card-bg: #fff;
-    --card-border: #ccc;
-  }
-  .dark {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --container-bg: #1e1e1e;
-    --accent-color: #66aaff;
-    --header-bg: #333;
-    --header-text: #fff;
-    --card-bg: #2a2a2a;
-    --card-border: #555;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  /* En-tête */
+/* Reset de base */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Typographie et couleurs de base */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #1f2937; /* équivalent à Tailwind gray-800 */
+  color: #f9fafb; /* équivalent à Tailwind gray-100 */
+  line-height: 1.6;
+}
+
+/* HEADER */
+header {
+  background-color: #111827; /* gray-900 */
+  color: #f9fafb;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+header .header-left {
+  display: flex;
+  align-items: center;
+}
+header .logo {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+}
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+header .header-right {
+  align-self: flex-end;
+}
+header .header-right input {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background-color: #374151; /* gray-700 */
+  border: none;
+  color: #f9fafb;
+  outline: none;
+  width: 100%;
+  max-width: 20rem;
+}
+
+/* MAIN */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* GRILLE DU CATALOGUE */
+#catalogue {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* CARTES PRODUITS */
+.product-card {
+  background-color: #1f2937; /* gray-800 */
+  border: 1px solid #374151; /* gray-700 */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+.product-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.product-card .price-info {
+  font-size: 0.875rem;
+  color: #9ca3af; /* gray-400 */
+  margin-bottom: 0.75rem;
+}
+.product-card .price-toggle {
+  margin-bottom: 0.75rem;
+}
+.product-card .price-toggle button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  background-color: #2563eb; /* blue-600 */
+  color: #f9fafb;
+  border: none;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.product-card .price-toggle button:hover {
+  background-color: #1d4ed8; /* blue-700 */
+}
+.product-card .price-toggle button.selected {
+  background-color: #1d4ed8;
+}
+.product-card .quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.product-card .quantity-control button {
+  background-color: #2563eb;
+  border: none;
+  border-radius: 0.375rem;
+  color: #f9fafb;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.product-card .quantity-control button:hover {
+  background-color: #1d4ed8;
+}
+.product-card .quantity-control input {
+  width: 3rem;
+  text-align: center;
+  padding: 0.5rem;
+  border: 1px solid #374151;
+  border-radius: 0.375rem;
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+/* FOOTER */
+footer {
+  background-color: #111827;
+  border-top: 1px solid #374151;
+  padding: 1rem 2rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#invoice-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+#invoice-summary span {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+#invoice-summary .footer-buttons {
+  display: flex;
+  gap: 1rem;
+}
+#invoice-summary .footer-buttons button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#invoice-summary .footer-buttons button:hover {
+  opacity: 0.9;
+}
+#clear-btn {
+  background-color: #dc2626; /* red-600 */
+  color: #f9fafb;
+}
+#facture-btn {
+  background-color: #16a34a; /* green-600 */
+  color: #f9fafb;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--header-bg);
-    color: var(--header-text);
-    padding: 10px 20px;
-  }
-  .header-left {
-    display: flex;
-    align-items: center;
-  }
-  .logo {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 1.5em;
-  }
-  header button {
-    background: var(--container-bg);
-    color: var(--text-color);
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  /* Main */
-  main {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
-  }
-  .category-section {
-    margin-bottom: 30px;
-  }
-  .category-section h2 {
     text-align: center;
-    margin-bottom: 20px;
   }
-  
-  /* Grille des cartes produits */
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
+  header .header-right {
+    width: 100%;
+    margin-top: 1rem;
   }
-  .product-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.2s;
-  }
-  .product-card:hover {
-    transform: scale(1.02);
-  }
-  .product-card h3 {
-    margin: 10px 0;
-    font-size: 1.2em;
-  }
-  .price-info {
-    margin: 10px 0;
-    font-size: 0.9em;
-  }
-  .price-toggle {
-    margin-bottom: 10px;
-  }
-  .price-toggle button {
-    background: var(--accent-color);
-    border: none;
-    color: #fff;
-    padding: 5px 10px;
-    margin: 0 5px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .price-toggle button.selected {
-    background: darkblue;
-  }
-  .quantity-control {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .quantity-control button {
-    background: var(--accent-color);
-    border: none;
-    color: #fff;
-    width: 30px;
-    height: 30px;
-    font-size: 1.2em;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .quantity-control span {
-    margin: 0 10px;
-    width: 30px;
-    text-align: center;
-    font-size: 1em;
-  }
-  
-  /* Footer / Résumé de la facture */
   footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--container-bg);
-    border-top: 1px solid var(--card-border);
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
   }
   #invoice-summary {
-    display: flex;
-    gap: 15px;
-    align-items: center;
+    flex-direction: column;
   }
-  #invoice-summary span {
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-  #invoice-summary button {
-    background: var(--accent-color);
-    border: none;
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
+}

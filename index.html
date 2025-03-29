@@ -1,38 +1,75 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
 <head>
   <meta charset="UTF-8">
-  <title>LTD little seoul - Facturation</title>
-  <!-- Activation du mode dark via Tailwind (mode "class") -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LTD Little Seoul - Facturation</title>
+  <!-- Favicon -->
+  <link rel="icon" href="logo.png" type="image/png">
+  <!-- Configuration de Tailwind CSS -->
   <script>
-    tailwind.config = { darkMode: 'class' }
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    };
   </script>
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- jsPDF et jsPDF-AutoTable pour le PDF -->
+  <!-- jsPDF et jsPDF-AutoTable pour la génération du PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </head>
-<body class="bg-gray-900 text-gray-100">
-  <header class="flex justify-between items-center bg-gray-800 p-4">
-    <div class="flex items-center">
-      <!-- Affichage du logo sur la page (optionnel) -->
-      <img src="logo.png" alt="Logo LTD" class="w-12 h-12 mr-4">
-      <h1 class="text-2xl font-bold">LTD little seoul</h1>
+<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-md py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4">
+      <div class="flex items-center">
+        <img src="logo.png" alt="Logo LTD" class="w-12 h-12 mr-3">
+        <h1 class="text-2xl font-bold text-white">LTD Little Seoul</h1>
+      </div>
+      <input type="text" id="search-input" placeholder="Rechercher un produit..." class="w-64 px-3 py-2 rounded-full bg-gray-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
     </div>
-    <!-- Pas de bouton de bascule, le site reste en dark -->
   </header>
-  <main class="max-w-6xl mx-auto p-4">
-    <!-- Le catalogue sera affiché ici sous forme de cartes produits -->
-    <section id="catalogue"></section>
+  
+  <!-- Contenu principal en deux colonnes -->
+  <main class="flex flex-1 overflow-hidden">
+    <!-- Panneau récapitulatif (colonne de gauche) -->
+    <aside class="w-1/4 p-6">
+      <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 flex flex-col justify-center items-center rounded-2xl shadow-2xl h-full">
+        <h2 class="text-2xl font-bold mb-4 text-white">Récapitulatif</h2>
+        <div id="total-facture" class="text-3xl font-semibold text-white mb-4">
+          Total : 0 $
+        </div>
+        <div id="invoice-details" class="w-full text-left text-sm text-gray-300 mb-6 space-y-1">
+          <!-- Le détail de la facture sera généré ici dynamiquement -->
+        </div>
+        <div class="flex flex-col gap-4 w-full">
+          <button id="clear-btn" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded shadow transition">
+            Réinitialiser
+          </button>
+          <button id="facture-btn" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded shadow transition">
+            Générer Facture
+          </button>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Catalogue des produits (colonne de droite) -->
+    <section id="catalogue" class="flex-1 p-6 grid grid-cols-4 gap-4 overflow-auto" style="max-height: calc(100vh - 120px);">
+      <!-- Les cartes produits seront injectées ici par le script.js -->
+    </section>
   </main>
-  <footer class="fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700 p-4">
-    <div id="invoice-summary" class="flex justify-center items-center space-x-4">
-      <span id="total-facture" class="text-lg font-semibold">Total : 0 $</span>
-      <button id="clear-btn" class="bg-red-600 text-white px-4 py-2 rounded">Réinitialiser</button>
-      <button id="facture-btn" class="bg-green-600 text-white px-4 py-2 rounded">Générer Facture</button>
-    </div>
+  
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-2 text-center text-sm text-gray-500">
+    &copy; 2025 LTD Little Seoul. Tous droits réservés.
   </footer>
+  
   <script src="script.js"></script>
 </body>
 </html>
